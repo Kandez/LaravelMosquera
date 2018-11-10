@@ -84,6 +84,7 @@
 
                 <div class="links">
                     <a href="{{ route('students') }}">Estudiantes</a>
+                    <a href="{{ route('grades') }}">Ciclos</a>
                 </div>
             </div>
         </div>

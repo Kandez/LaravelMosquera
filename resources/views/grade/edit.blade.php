@@ -20,19 +20,15 @@
         </ul>
       </div><br />
     @endif
-      <form method="post" action="{{ route('updatestudent', [ 'id' => $student->id ]) }}">
+      <form method="post" action="{{ route('updategrade', [ 'id' => $grade->id ]) }}">
         @csrf
         <div class="form-group">
           <label for="name">Nombre:</label>
-          <input type="text" class="form-control" name="name" value="{{ $student->name }}" required/>
+          <input type="text" class="form-control" name="name" value="{{ $grade->name }}" required/>
         </div>
         <div class="form-group">
-          <label for="price">Apellidos:</label>
-          <input type="text" class="form-control" name="lastname" value="{{ $student->lastname }}" required/>
-        </div>
-        <div class="form-group">
-          <label for="quantity">Edad:</label>
-          <input type="text" class="form-control" name="age" value="{{ $student->age }}" required/>
+          <label for="price">Nivel:</label>
+          <input type="text" class="form-control" name="level" value="{{ $grade->level }}" required/>
         </div>
         <button type="submit" class="btn btn-primary">Actualizar</button>
       </form>

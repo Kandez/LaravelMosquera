@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 use App\student;
 
 class StudentController extends Controller{
+    public function grades(){
+        return $this->belongsToMany(grade::class);
+    }
+
     public function index(){
         $students = student::orderBy('lastname', 'asc')->orderBy('name', 'asc')->get();
 
