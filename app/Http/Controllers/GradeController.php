@@ -4,16 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\grade;
+use App\student;
 
 class GradeController extends Controller{
-    public function students()    {
-        return $this->belongsToMany(student::class);
-    }
-
     public function index(){
         $grades = grade::orderBy('level', 'asc')->orderBy('name', 'asc')->get();
+        $students = student::orderBy('lastname', 'asc')->orderBy('name', 'asc')->get();
 
-        return view('grade.index', compact('grades'));
+        return view('grade.index', compact('grades', 'students'));
     }
 
     public function create(){

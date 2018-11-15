@@ -20,6 +20,7 @@
         <tr>
           <td>Nombre</td>
           <td>Nivel</td>
+          <td>Alumnos</td>
           <td colspan="2">Action</td>
         </tr>
     </thead>
@@ -29,6 +30,21 @@
         <tr>
             <td>{{$grade->name}}</td>
             <td>{{$grade->level}}</td>
+            @if($grade->students->count())
+            <td>
+              <ul>
+                @foreach($grade->students as $student)
+                <li>
+                  {{$student->name}}
+                </li>
+                @endforeach
+              </ul>
+            </td>
+            @else
+            <td>
+              Este ciclo no tiene alumnos asignados.
+            </td>
+            @endif
             <td>
               <a href="{{ route('editgrade', [ 'id' => $grade->id ]) }}" class="btn btn-primary">Editar</a>
             </td>
