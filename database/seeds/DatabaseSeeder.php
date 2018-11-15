@@ -38,5 +38,7 @@ class DatabaseSeeder extends Seeder
         factory(studies::class)->create(['id' => '4', 'id_student' => '4', 'id_grade' => '9']);
         factory(studies::class)->create(['id' => '5', 'id_student' => '5', 'id_grade' => '9']);
         factory(studies::class)->create(['id' => '6', 'id_student' => '5', 'id_grade' => '6']);
+
+        factory(User::class)->create(['email' => 'admin@admin.com', 'password' => '123456']);
     }
 }
