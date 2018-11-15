@@ -3,15 +3,11 @@
 Route::get('/', function () {
     return view('welcome');
 });
-<<<<<<< HEAD
 
-=======
->>>>>>> 4c610c932ed53f96703e042e83b5ce142e7b306b
 Route::get('/public', function () {
     return view('welcome');
 })->name('home');
 
-<<<<<<< HEAD
 //Petitions
 Route::get('petitions', 'PetitionController@index')->name('petitions');
 Route::get('petition/create', 'PetitionController@create')->name('createpetition');
@@ -26,7 +22,6 @@ Route::post('addcompany', 'CompanyController@store')->name('addcompany');
 Route::get('company/edit/{id}', 'CompanyController@edit')->name('editcompany');
 Route::post('updatecompany/{id}', 'CompanyController@update')->name('updatecompany');
 Route::post('deletecompany/{id}', 'CompanyController@destroy')->name('deletecompany');
-=======
 //students
 Route::get('students', 'StudentController@index')->name('students');
 Route::get('student/create', 'StudentController@create')->name('createstudent');
@@ -42,4 +37,3 @@ Route::post('addgrade', 'GradeController@store')->name('addgrade');
 Route::get('grade/edit/{id}', 'GradeController@edit')->name('editgrade');
 Route::post('updategrade/{id}', 'GradeController@update')->name('updategrade');
 Route::post('deletegrade/{id}', 'GradeController@destroy')->name('deletegrade');
->>>>>>> 4c610c932ed53f96703e042e83b5ce142e7b306b

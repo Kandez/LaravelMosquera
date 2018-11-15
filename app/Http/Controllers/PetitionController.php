@@ -9,7 +9,7 @@ class PetitionController extends Controller
 {
     public function index()
     {
-        $petitions = petition::all();
+        $petitions = petition::orderBy('type', 'DESC')->paginate();
         return view('petition.index', compact('petitions'));
     }
 
