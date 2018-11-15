@@ -10,7 +10,7 @@ class CompanyController extends Controller
 {
     public function index()
     {
-        $companies = company::all();
+        $companies = company::orderBy('name')->paginate();
         return view('company.index', compact('companies'));
     }
 

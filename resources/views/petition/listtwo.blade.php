@@ -12,17 +12,14 @@
       {{ session()->get('success') }}  
     </div><br />
   @endif
-  <a href="{{ route('createpetition') }}">
+  <a href="{{ route('createpetition')}}">
     <button>Añadir</button>
-  </a>
-  <a href="{{ route('listtwo') }}">
-    <button>Peticiones por ciclo</button>
   </a>
   <table class="table table-striped">
     <thead>
         <tr>
           <td>tipo contrato</td>
-          <td>num estudiantes</td>
+          <td>id ciclo</td>
           <td colspan="2">Action</td>
         </tr>
     </thead>
@@ -31,7 +28,7 @@
         @foreach($petitions as $petition)
         <tr>
             <td>{{$petition->type}}</td>
-            <td>{{$petition->n_students}}</td>
+            <td>{{$petition->id_grade}}</td>
             <td>
               <a href="{{ route('editpetition',['id' =>$petition->id]) }}" class="btn btn-primary">Editar</a>
             </td>

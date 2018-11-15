@@ -13,6 +13,13 @@ class PetitionController extends Controller
         return view('petition.index', compact('petitions'));
     }
 
+    public function index2()
+    {
+        $petitions =petition::orderBy('type', 'DESC')->orderBy('id_grade', 'DESC')->paginate();
+        return view('listtwo.index', compact('petitions'));
+    }
+
+
     public function create()
     {
         return view('petition.create');
