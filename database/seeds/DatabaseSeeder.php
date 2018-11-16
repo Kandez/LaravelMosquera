@@ -39,6 +39,19 @@ class DatabaseSeeder extends Seeder
         factory(studies::class)->create(['id' => '4', 'id_student' => '4', 'id_grade' => '9']);
         factory(studies::class)->create(['id' => '5', 'id_student' => '5', 'id_grade' => '9']);
         factory(studies::class)->create(['id' => '6', 'id_student' => '5', 'id_grade' => '6']);
+        
+        factory(company::class)->create(['id' => '1', 'name' => 'AT_Sistemas', 'city' => 'Jerez', 'cp' => '11401']);
+        factory(company::class)->create(['id' => '2', 'name' => 'Everis', 'city' => 'Sevilla', 'cp' => '41001']);
+        factory(company::class)->create(['id' => '3', 'name' => 'IAGT', 'city' => 'Sevilla', 'cp' => '41001']);
+        factory(company::class)->create(['id' => '4', 'name' => 'Tecnica_24', 'city' => 'Cadiz', 'cp' => '11001']);
+        factory(company::class)->create(['id' => '5', 'name' => 'Accenture', 'city' => 'MAlaga', 'cp' => '29001']);
+
+        factory(petition::class)->create(['id' => '1','id_company' => '1','id_student'=> '1','type' => 'contrato','n_students'=> '1']);
+        factory(petition::class)->create(['id' => '2','id_company' => '2','id_student'=> '2','type' => 'Dual','n_students'=> '1']);
+        factory(petition::class)->create(['id' => '3','id_company' => '2','id_student'=> '3','type' => 'Dual','n_students'=> '1']);
+        factory(petition::class)->create(['id' => '4','id_company' => '3','id_student'=> '6','type' => 'FCT','n_students'=> '1']);
+        factory(petition::class)->create(['id' => '5','id_company' => '4','id_student'=> '4','type' => 'contrato','n_students'=> '1']);
+        factory(petition::class)->create(['id' => '6','id_company' => '5','id_student'=> '5','type' => 'FCT','n_students'=> '1']);
 
         factory(User::class)->create(['email' => 'admin@admin.com', 'password' => '123456']);
 
