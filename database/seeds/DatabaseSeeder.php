@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
         factory(student::class)->create(['id' => '3', 'name' => 'Cristian', 'lastname' => 'Guerrero', 'age' => '24']);
         factory(student::class)->create(['id' => '4', 'name' => 'Quino', 'lastname' => 'Guzman Garcia', 'age' => '24']);
         factory(student::class)->create(['id' => '5', 'name' => 'Jose Manuel', 'lastname' => 'Mosquera Gómez', 'age' => '22']);
+        factory(student::class)->create(['id' => '6', 'name' => 'Manuel', 'lastname' => 'Reina', 'age' => '21']);
 
         factory(grade::class)->create(['id' => '1', 'name' => 'Actividades Comerciales', 'level' => 'Medio']);
         factory(grade::class)->create(['id' => '2', 'name' => 'Calderería y Soldadura', 'level' => 'Medio']);

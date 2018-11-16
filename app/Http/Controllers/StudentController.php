@@ -16,7 +16,7 @@ class StudentController extends Controller{
     
     public function indexStudies($id){
         $student = student::find($id);
-        $studies = studies::where('id_student', $id)->get();
+        $studies = studies::where('id_student', $id)->with('grade')->get();
         return view('student.delete', compact('student', 'studies'));
     }
 
