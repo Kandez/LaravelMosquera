@@ -12,4 +12,7 @@ class grade extends Model
     {
         return $this->hasMany(petition::class, 'petitions', 'id');
     }
+    public function students()    {
+        return $this->belongsToMany(student::class, 'studies', 'id_grade', 'id_student');
+    }
 }

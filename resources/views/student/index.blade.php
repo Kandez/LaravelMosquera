@@ -21,6 +21,7 @@
           <td>Nombre</td>
           <td>Apellidos</td>
           <td>Edad</td>
+          <td>Ciclos</td>
           <td colspan="2">Action</td>
         </tr>
     </thead>
@@ -31,14 +32,28 @@
             <td>{{$student->name}}</td>
             <td>{{$student->lastname}}</td>
             <td>{{$student->age}}</td>
+            @if($student->grades->count())
+            <td>
+              <ul>
+                @foreach($student->grades as $grade)
+                <li>
+                  {{$grade->name}}
+                </li>
+                @endforeach
+              </ul>
+            </td>
+            @else
+            <td>
+              Este alumno no tiene ciclos asignados.
+            </td>
+            @endif
             <td>
               <a href="{{ route('editstudent', [ 'id' => $student->id ]) }}" class="btn btn-primary">Editar</a>
             </td>
             <td>
-                <form action="{{ route('deletestudent', [ 'id' => $student->id ]) }}" method="post">
-                  @csrf
-                  <button class="btn btn-danger" type="submit">Eliminar</button>
-                </form>
+              <a href="{{ route('studies', [ 'id' => $student->id ]) }}">
+                  <button class="btn btn-danger">Eliminar cursos</button>
+              </a>
             </td>
         </tr>
         @endforeach

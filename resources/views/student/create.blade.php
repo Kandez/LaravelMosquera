@@ -34,6 +34,20 @@
               <label for="quantity">Edad:</label>
               <input type="number" class="form-control" name="age" required/>
           </div>
+          <div class="form-group">
+            <select name="id_grade[]" multiple>
+              @foreach($grades as $grade)
+              <option value="{{ $grade->id }}">{{ $grade->name }}, {{ $grade->level }}</option>
+              @endforeach
+            </select>
+            <p>Presione la tecla ctrl para seleccionar varias opciones</p>
+          </div>
+          {{-- <div class="form-group">
+            <label for="quantity">Ciclos:</label>
+            @foreach($grades as $grade)
+            <p>{{ $grade->name }}, {{ $grade->level }} <input type="checkbox" name="id_grade[]" value="{{ $grade->id }}"/></p>
+            @endforeach
+          </div> --}}
           <button type="submit" class="btn btn-primary">Añadir</button>
       </form>
   </div>

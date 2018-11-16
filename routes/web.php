@@ -25,11 +25,12 @@ Route::post('updatecompany/{id}', 'CompanyController@update')->name('updatecompa
 Route::post('deletecompany/{id}', 'CompanyController@destroy')->name('deletecompany');
 //students
 Route::get('students', 'StudentController@index')->name('students');
+Route::get('studies/{id}', 'StudentController@indexStudies')->name('studies');
 Route::get('student/create', 'StudentController@create')->name('createstudent');
 Route::post('addstudent', 'StudentController@store')->name('addstudent');
 Route::get('student/edit/{id}', 'StudentController@edit')->name('editstudent');
 Route::post('updatestudent/{id}', 'StudentController@update')->name('updatestudent');
-Route::post('deletestudent/{id}', 'StudentController@destroy')->name('deletestudent');
+Route::post('deletestudies/{id}', 'StudentController@destroy')->name('deletestudies');
 
 //grades
 Route::get('grades', 'GradeController@index')->name('grades');
