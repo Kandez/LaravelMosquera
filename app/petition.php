@@ -8,7 +8,13 @@ class petition extends Model
 {
     protected $fillable = ['type', 'n_students'];
 
-    public function companies(){
+    public function companies()
+    {
         return $this->belongsTo(company::class);
+    }
+
+    public function grades()
+    {
+        return $this->belongsTo(grade::class, 'grades', 'id_grade');
     }
 }
