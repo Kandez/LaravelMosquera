@@ -12,9 +12,6 @@
       {{ session()->get('success') }}  
     </div><br />
   @endif
-  <a href="{{ route('createpetition')}}">
-    <button>Añadir</button>
-  </a>
   <table class="table table-striped">
     <thead>
         <tr>
