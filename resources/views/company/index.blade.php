@@ -37,7 +37,7 @@
             <td>
                 <form action="{{ route('deletecompany', ['id' =>$company->id]) }}" method="post">
                   @csrf
-                  <button class="btn btn-danger" type="submit">Eliminar</button>
+                  <button class="btn btn-danger" onclick="return confirm('Estas seguro?')" type="submit">Eliminar</button>
                 </form>
             </td>
         </tr>

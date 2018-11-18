@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\DB;
 use App\student;
 use App\grade;
 use App\studies;
+use App\company;
+use App\petition;
 
 class DatabaseSeeder extends Seeder
 {

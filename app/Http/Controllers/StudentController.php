@@ -87,8 +87,15 @@ class StudentController extends Controller{
     }
  
     public function destroy($id){
-        $grade = grade::find($id);
-        $grade->delete();
+        $student = student::find($id);
+        $student->delete();
+
+        return redirect('/students')->with('success', 'El alumno ha sido eliminado.');
+    }
+
+    public function destroyStudie($id){
+        $studie = studies::find($id);
+        $studie->delete();
 
         return redirect('/students')->with('success', 'El curso ha sido eliminado.');
     }
