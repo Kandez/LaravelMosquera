@@ -12,7 +12,7 @@
       {{ session()->get('success') }}  
     </div><br />
   @endif
-  <button>{{ $student->name }}, {{ $student->lastname }}</button>
+  <h1>{{ $student->name }}, {{ $student->lastname }}</h1>
   </a>
   <table class="table table-striped">
     <thead>
@@ -28,13 +28,13 @@
             <td>{{$studie->grade->name}}</td>
             <td>{{$studie->grade->level}}</td>
             <td>
-                <form action="{{ route('deletestudies', [ 'id' => $studie->id ]) }}" method="post">
+                <form action="{{ route('deletestudie', [ 'id' => $studie->id ]) }}" method="post">
                   @csrf
-                  <button class="btn btn-danger" type="submit">Eliminar</button>
+                  <button class="btn btn-danger" onclick="return confirm('Estas seguro?')" type="submit">Eliminar</button>
                 </form>
-            </td>
-        </tr>
+            </td> 
         @endforeach
+      </tr>
     </tbody>
   </table>
   <a href="{{ route('home')}}">
