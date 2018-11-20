@@ -18,8 +18,8 @@ class CreatePetitionsTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('id_company');
             $table->foreign('id_company')->references('id')->on('companies');
-            $table->unsignedInteger('id_student');
-            $table->foreign('id_student')->references('id')->on('students');
+            $table->unsignedInteger('id_grade');
+            $table->foreign('id_grade')->references('id')->on('grades');
             $table->string('type');
             $table->integer('n_students');
             $table->timestamps();

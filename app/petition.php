@@ -6,15 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class petition extends Model
 {
-    protected $fillable = ['type', 'n_students'];
+    protected $fillable = ['id_grade','id_company','type', 'n_students'];
 
     public function companies()
     {
-        return $this->belongsTo(company::class);
+        return $this->belongsTo(company::class, 'id_company');
     }
 
     public function grades()
     {
-        return $this->belongsTo(grade::class, 'grades', 'id_grade');
+        return $this->belongsTo(grade::class, 'id_grade');
     }
 }

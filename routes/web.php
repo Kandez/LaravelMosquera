@@ -15,7 +15,7 @@ Route::post('addpetition', 'PetitionController@store')->name('addpetition');
 Route::get('petition/edit/{id}', 'PetitionController@edit')->name('editpetition');
 Route::post('updatepetition/{id}', 'PetitionController@update')->name('updatepetition');
 Route::post('deletepetition/{id}', 'PetitionController@destroy')->name('deletepetition');
-Route::get('petition/listtwo', 'PetitionController@index')->name('listtwo');
+Route::post('petition/listtwo', 'PetitionController@listtwo')->name('listtwo');
 //Companies
 Route::get('companies', 'CompanyController@index')->name('companies');
 Route::get('company/create', 'CompanyController@create')->name('createcompany');

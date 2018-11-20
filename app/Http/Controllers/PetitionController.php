@@ -4,13 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\petition;
+use App\grade;
 
 class PetitionController extends Controller
 {
     public function index()
     {
-        $petitions = petition::orderBy('type', 'DESC')->paginate();
-        return view('petition.index', compact('petitions'));
+        $petitions = petition::with('companies','grades')->orderBy('type', 'DESC')->paginate();
+        //dd($petitions);
+        $grades = grade::all();
+        return view('petition.index', compact('petitions','grades'));
     }
 
     public function index2()
@@ -69,6 +72,13 @@ class PetitionController extends Controller
         $petition->delete();
 
         return redirect('/petitions')->with('success', 'Peticion borrada');
+    }
+
+    public function listtwo(Request $req)
+    {
+        $petitions = petition::where('id_grade',$req->id_grade)->orderBy('type')->with('companies','grades')->get();
+        $grades = grade::all();
+        return view('petition.index', compact('petitions','grades'));
     }
 }
 
