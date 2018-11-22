@@ -63,6 +63,9 @@
   <a href="{{ route('home') }}">
     <button>Volver</button>
   </a>
+  <a href="{{ route('petitions') }}">
+    <button>Indice de peticiones</button>
+  </a>
 <div>
 
 <!-- Modal -->
@@ -91,9 +94,6 @@
                   <label for="exampleFormControlSelect1">Tipo Peticion</label>
                   <select class="form-control" id="exampleFormControlSelect1" name="type">
                     <option value="" selected>Selecciona un tipo...</option>
-                    {{-- @foreach($petitions[0]->type as $type) --}}
-                  {{-- <option value="{{ $pet->type }}"> {{$pet->type}}</option> --}}
-                    {{-- @endforeach --}}
                       <option value="FCT">FCT</option>
                       <option value="Dual">Dual</option>
                       <option value="Contrato">Contrato</option>
@@ -154,9 +154,19 @@
       <div class="modal-body">
         <form action="{{ route('listone') }}" method="POST">
           @csrf
-    </div>
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="">Fecha inicio y fin</span>
+            </div>
+            <input type="date" class="form-control" name="fini">
+            <input type="date" class="form-control" name="ffin">
+          </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+    <button type="submit" class="btn btn-primary">Filtrar</button>
   </div>
-    </form>
-    </div>
-  </div>
+</form>
+</div>
+</div>
+</div>
 @endsection
