@@ -32,7 +32,7 @@
         </div>
         <div class="form-group">
           <label for="cp">Codigo postal :</label>
-          <input type="number" class="form-control" name="cp" value="{{ $company->cp }}" required/>
+          <input type="edit" minlength="5" maxlength="5" class="form-control" name="cp" value="{{ $company->cp }}" required/>
         </div>
         <button type="submit" class="btn btn-primary">Actualizar</button>
       </form>

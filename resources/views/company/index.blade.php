@@ -13,15 +13,16 @@
     </div><br />
   @endif
   <a href="{{ route('createcompany')}}">
-    <button>Añadir</button>
+    <button class="btn btn-success">Añadir</button>
   </a>
+  <br></br>
   <table class="table table-striped">
     <thead>
         <tr>
-          <td>nombre compañia</td>
-          <td>ciudad</td>
-          <td>codigo postal</td>
-          <td colspan="2">Action</td>
+          <th>Nombre compañia</th>
+          <th>Ciudad</th>
+          <th>Codigo postal</th>
+          <th colspan="2">Action</th>
         </tr>
     </thead>
     <tbody>
@@ -49,8 +50,5 @@
         @endif
     </tbody>
   </table>
-  <a href="{{ route('home') }}">
-    <button>Volver</button>
-  </a>
 <div>
 @endsection

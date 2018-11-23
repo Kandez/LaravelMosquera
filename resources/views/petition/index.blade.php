@@ -13,7 +13,7 @@
     </div><br />
   @endif
   <a href="{{ route('createpetition') }}">
-    <button>Añadir</button>
+    <button class="btn btn-success">Añadir</button>
   </a>
   <a class="btn btn-primary" data-toggle="modal" data-target="#exampleModaldate">
   Peticiones entre dos fechas
@@ -24,6 +24,7 @@
   <a class="btn btn-primary" data-toggle="modal" data-target="#exampleModalciclo">
   Peticiones para un ciclo y tipo
   </a>
+  <br></br>
   <table class="table table-striped">
     <thead>
         <tr>
@@ -60,11 +61,8 @@
         @endif
     </tbody>
   </table>
-  <a href="{{ route('home') }}">
-    <button>Volver</button>
-  </a>
   <a href="{{ route('petitions') }}">
-    <button>Indice de peticiones</button>
+    <button class="btn btn-primary">Indice de peticiones</button>
   </a>
 <div>
 

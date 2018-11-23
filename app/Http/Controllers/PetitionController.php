@@ -85,21 +85,26 @@ class PetitionController extends Controller
     {
         $petitions=petition::wherebetween('created_at',[$req->fini,$req->ffin])->orderBy('type')->with('companies')->get();
         $grades = grade::all();
-        return view('petition.index', compact('petitions','grades'));
+        $finic=$req->fini;
+        $ffinal=$req->ffin;
+        return view('petition.index', compact('petitions','grades','finic','ffin'));
     }
 
     public function listtwo(Request $req)
     {
         $petitions = petition::where('id_grade',$req->id_grade)->orderBy('type')->with('companies','grades')->get();
         $grades = grade::all();
-        return view('petition.index', compact('petitions','grades'));
+        $idg=$req->id_grade;
+        return view('petition.index', compact('petitions','grades','idg'));
     }
 
     public function listthree(Request $req)
     {
         $petitions=petition::where('id_grade', $req->id_grade)->where('type', $req->type)->with('companies', 'grades')->get();
         $grades = grade::all();
-        return view('petition.index', compact('petitions', 'grades'));
+        $idg=$req->id_grade;
+        $type=$req->type;
+        return view('petition.index', compact('petitions', 'grades','id_grade','type'));
     }
 
 
