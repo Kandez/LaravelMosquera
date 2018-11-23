@@ -32,7 +32,7 @@
         </div>
         <div class="form-group">
             <label for="cp">Codigo postal :</label>
-                <input type="number" class="form-control" name="cp" required/>
+                <input type="text" minlength="5" maxlength="5" class="form-control" name="cp" required/>
         </div>
           <button type="submit" class="btn btn-primary">Añadir</button>
       </form>

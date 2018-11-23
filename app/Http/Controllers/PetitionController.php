@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\petition;
 use App\grade;
 use PDF;
+use App\company;
 
 class PetitionController extends Controller
 {
@@ -13,30 +14,30 @@ class PetitionController extends Controller
     public function index()
     {
         $petitions = petition::with('companies','grades')->orderBy('type', 'DESC')->paginate();
-        //dd($petitions);
         $grades = grade::all();
         return view('petition.index', compact('petitions','grades'));
     }
 
-    // public function index2()
-    // {
-    //     $petitions =petition::orderBy('type', 'DESC')->orderBy('id_grade', 'DESC')->paginate();
-    //     return view('listtwo.index', compact('petitions'));
-    // }
-
-
     public function create()
     {
-        return view('petition.create');
+        $grades=grade::orderBy('level', 'desc')->get();
+        $companies=company::all();
+        return view('petition.create', compact('grades','companies'));
     }
 
     public function store(Request $request)
     {
+        
         $request->validate([
+            'id_grade' => 'required',
+            'id_company' => 'required',
             'type'=>'required',
             'n_students'=> 'required'
         ]);
         $petition = new petition([
+
+            'id_grade' => $request->get('id_grade'),
+            'id_company' => $request->get('id_company'),
             'type' => $request->get('type'),
             'n_students'=> $request->get('n_students')
         ]);
@@ -50,17 +51,23 @@ class PetitionController extends Controller
     public function edit($id)
     {
         $petition = petition::find($id);
-        return view('petition.edit', compact('petition'));
+        $grades = grade::all();
+        $companies = company::all();
+        return view('petition.edit', compact('petition','grades','companies'));
     }
 
     public function update(Request $request, $id)
     {
         $request->validate([
+            'id_grade' =>'required',
+            'id_company' =>'required',
             'type'=>'required',
             'n_students'=> 'required'
         ]);
 
         $petition = petition::find($id);
+        $petition->id_grade = $request->get('id_grade');
+        $petition->id_company = $request->get('id_company');
         $petition->type = $request->get('type');
         $petition->n_students = $request->get('n_students');
         $petition->save();
@@ -76,24 +83,30 @@ class PetitionController extends Controller
         return redirect('/petitions')->with('success', 'Peticion borrada');
     }
 
-    public function listone(Request $req1, Request $req2)
+    public function listone(Request $req)
     {
-        $petitions=petition::where($petition->$timestamps->create_at->between($req1,$req2))-orderBy('type')->with('companies')->get();
-        return view('petition.index', compact('companies'));
+        $petitions=petition::wherebetween('created_at',[$req->fini,$req->ffin])->orderBy('type')->with('companies')->get();
+        $grades = grade::all();
+        $finic=$req->fini;
+        $ffinal=$req->ffin;
+        return view('petition.index', compact('petitions','grades','finic','ffin'));
     }
 
     public function listtwo(Request $req)
     {
         $petitions = petition::where('id_grade',$req->id_grade)->orderBy('type')->with('companies','grades')->get();
         $grades = grade::all();
-        return view('petition.index', compact('petitions','grades'));
+        $idg=$req->id_grade;
+        return view('petition.index', compact('petitions','grades','idg'));
     }
 
     public function listthree(Request $req)
     {
         $petitions=petition::where('id_grade', $req->id_grade)->where('type', $req->type)->with('companies', 'grades')->get();
         $grades = grade::all();
-        return view('petition.index', compact('petitions', 'grades'));
+        $idg=$req->id_grade;
+        $type=$req->type;
+        return view('petition.index', compact('petitions', 'grades','id_grade','type'));
     }
 
     public function generatePDF(Request $req)

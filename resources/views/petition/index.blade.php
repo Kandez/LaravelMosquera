@@ -13,7 +13,7 @@
     </div><br />
   @endif
   <a href="{{ route('createpetition') }}">
-    <button>Añadir</button>
+    <button class="btn btn-success">Añadir</button>
   </a>
   <a class="btn btn-primary" data-toggle="modal" data-target="#exampleModaldate">
   Peticiones entre dos fechas
@@ -31,6 +31,7 @@
     <button type="submit" class="btn btn-danger"> generar PDF</button>
   </form>
 
+  <br></br>
   <table class="table table-striped">
     <thead>
         <tr>
@@ -67,8 +68,8 @@
         @endif
     </tbody>
   </table>
-  <a href="{{ route('home') }}">
-    <button>Volver</button>
+  <a href="{{ route('petitions') }}">
+    <button class="btn btn-primary">Indice de peticiones</button>
   </a>
 <div>
 
@@ -98,9 +99,6 @@
                   <label for="exampleFormControlSelect1">Tipo Peticion</label>
                   <select class="form-control" id="exampleFormControlSelect1" name="type">
                     <option value="" selected>Selecciona un tipo...</option>
-                    {{-- @foreach($petitions[0]->type as $type) --}}
-                  {{-- <option value="{{ $pet->type }}"> {{$pet->type}}</option> --}}
-                    {{-- @endforeach --}}
                       <option value="FCT">FCT</option>
                       <option value="Dual">Dual</option>
                       <option value="Contrato">Contrato</option>
@@ -165,5 +163,19 @@
   </div>
     </form>
     </div>
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="">Fecha inicio y fin</span>
+            </div>
+            <input type="date" class="form-control" name="fini">
+            <input type="date" class="form-control" name="ffin">
+          </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+    <button type="submit" class="btn btn-primary">Filtrar</button>
   </div>
+</form>
+</div>
+</div>
+</div>
 @endsection
