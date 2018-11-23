@@ -56,7 +56,7 @@ class DatabaseSeeder extends Seeder
         factory(petition::class)->create(['id' => '5', 'id_company' => '4', 'id_grade'=> '4', 'type' => 'contrato', 'n_students'=> '1']);
         factory(petition::class)->create(['id' => '6', 'id_company' => '5', 'id_grade'=> '5', 'type' => 'FCT', 'n_students'=> '1']);
 
-        factory(User::class)->create(['name' => 'Admin', 'email' => 'admin@admin.com', 'password' => '123456']);
+        factory(User::class)->create(['name' => 'Admin', 'email' => 'admin@admin.com', 'password' => $password = bcrypt('123456')]);
 
     }
 }
