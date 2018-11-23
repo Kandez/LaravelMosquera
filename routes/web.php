@@ -18,6 +18,8 @@ Route::post('deletepetition/{id}', 'PetitionController@destroy')->name('deletepe
 Route::post('petition/listone', 'PetitionController@listone')->name('listone');
 Route::post('petition/listtwo', 'PetitionController@listtwo')->name('listtwo');
 Route::post('petition/listthree', 'PetitionController@listthree')->name('listthree');
+Route::post('pdfPetition','PetitionController@generatePDF')->name('pdf');
+
 //Companies
 Route::get('companies', 'CompanyController@index')->name('companies');
 Route::get('company/create', 'CompanyController@create')->name('createcompany');
@@ -25,6 +27,7 @@ Route::post('addcompany', 'CompanyController@store')->name('addcompany');
 Route::get('company/edit/{id}', 'CompanyController@edit')->name('editcompany');
 Route::post('updatecompany/{id}', 'CompanyController@update')->name('updatecompany');
 Route::post('deletecompany/{id}', 'CompanyController@destroy')->name('deletecompany');
+
 //students
 Route::get('students', 'StudentController@index')->name('students');
 Route::get('studies/{id}', 'StudentController@indexStudies')->name('studies');
@@ -42,3 +45,7 @@ Route::post('addgrade', 'GradeController@store')->name('addgrade');
 Route::get('grade/edit/{id}', 'GradeController@edit')->name('editgrade');
 Route::post('updategrade/{id}', 'GradeController@update')->name('updategrade');
 Route::post('deletegrade/{id}', 'GradeController@destroy')->name('deletegrade');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

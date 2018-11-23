@@ -42,14 +42,12 @@
             </select>
             <p>Presione la tecla ctrl para seleccionar varias opciones</p>
           </div>
-          {{-- <div class="form-group">
-            <label for="quantity">Ciclos:</label>
-            @foreach($grades as $grade)
-            <p>{{ $grade->name }}, {{ $grade->level }} <input type="checkbox" name="id_grade[]" value="{{ $grade->id }}"/></p>
-            @endforeach
-          </div> --}}
           <button type="submit" class="btn btn-primary">Añadir</button>
       </form>
   </div>
 </div>
+</br>
+<a href="{{ route('students')}}">
+  <button class="btn btn-danger">Volver</button>
+</a>
 @endsection

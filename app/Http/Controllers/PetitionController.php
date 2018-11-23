@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\petition;
 use App\grade;
+use PDF;
 
 class PetitionController extends Controller
 {
+
     public function index()
     {
         $petitions = petition::with('companies','grades')->orderBy('type', 'DESC')->paginate();
@@ -94,6 +96,15 @@ class PetitionController extends Controller
         return view('petition.index', compact('petitions', 'grades'));
     }
 
+    public function generatePDF(Request $req)
+    {
+        $petitions=$req->petitions;
+        dd($req->petitions);
+        $pdf = PDF::loadView('pdf.pdf', compact('petitions'));
 
+        $pdf->save(storage_path().'_filename.pdf');
+
+        return $pdf->stream('pdf.pdf');
+    }
 }
 

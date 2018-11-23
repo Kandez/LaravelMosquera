@@ -13,7 +13,7 @@
     </div><br />
   @endif
   <a href="{{ route('creategrade')}}">
-    <button>Añadir</button>
+    <button class="btn btn-success">Añadir</button>
   </a>
   <table class="table table-striped">
     <thead>

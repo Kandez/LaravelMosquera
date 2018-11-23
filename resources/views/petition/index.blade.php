@@ -24,6 +24,13 @@
   <a class="btn btn-primary" data-toggle="modal" data-target="#exampleModalciclo">
   Peticiones para un ciclo y tipo
   </a>
+
+  <form action="{{ route('pdf') }}" method="POST">
+    @csrf
+    <input type="hidden" name="petitions[]" value="{{$petitions[$petitions]}}">
+    <button type="submit" class="btn btn-danger"> generar PDF</button>
+  </form>
+
   <table class="table table-striped">
     <thead>
         <tr>
@@ -154,7 +161,7 @@
       <div class="modal-body">
         <form action="{{ route('listone') }}" method="POST">
           @csrf
-    </div>
+      </div>
   </div>
     </form>
     </div>

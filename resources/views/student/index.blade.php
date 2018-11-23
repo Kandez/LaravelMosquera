@@ -13,7 +13,7 @@
     </div><br />
   @endif
   <a href="{{ route('createstudent')}}">
-    <button>Añadir</button>
+    <button class="btn btn-success">Añadir</button>
   </a>
   <table class="table table-striped">
     <thead>
@@ -73,8 +73,5 @@
         @endif
     </tbody>
   </table>
-  <a href="{{ route('home')}}">
-    <button>Volver</button>
-  </a>
 <div>
 @endsection

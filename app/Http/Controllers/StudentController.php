@@ -29,7 +29,8 @@ class StudentController extends Controller{
         $request->validate([
             'name'=>'required',
             'lastname'=> 'required',
-            'age' => 'required|integer'
+            'age' => 'required|integer',
+            'id_grade' => 'required'
         ]);
         $student = new student([
         'name' => $request->get('name'),

@@ -55,4 +55,8 @@
       </form>
   </div>
 </div>
+</br>
+<a href="{{ route('students')}}">
+  <button class="btn btn-danger">Volver</button>
+</a>
 @endsection
