@@ -12,9 +12,7 @@
       {{ session()->get('success') }}  
     </div><br />
   @endif
-  <a href="{{ route('createpetition') }}">
-    <button class="btn btn-success">Añadir</button>
-  </a>
+  <a href="{{ route('createpetition') }}" class="btn btn-success">Añadir</a>
   <a class="btn btn-primary" data-toggle="modal" data-target="#exampleModaldate">
   Peticiones entre dos fechas
   </a>
@@ -27,7 +25,15 @@
 
   <form action="{{ route('pdf') }}" method="POST">
     @csrf
-    <input type="hidden" name="petitions[]" value="{{$petitions[$petitions]}}">
+    @if(isset($finic) && isset($ffinal))
+      <input type="hidden" name="finic" value="{{ $finic }}">
+      <input type="hidden" name="ffinal" value="{{ $ffinal }}">
+    @elseif(isset($idg1))
+      <input type="hidden" name="idg1" value="{{ $idg1 }}">
+    @elseif(isset($idg2) && isset($type))
+      <input type="hidden" name="idg2" value="{{ $idg2 }}">
+      <input type="hidden" name="type" value="{{ $type }}">
+    @endif
     <button type="submit" class="btn btn-danger"> generar PDF</button>
   </form>
 
@@ -104,15 +110,15 @@
                       <option value="Contrato">Contrato</option>
                   </select>
               </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <button type="submit" class="btn btn-primary">Filtrar</button>
+              </div>
+          </form>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-          <button type="submit" class="btn btn-primary">Filtrar</button>
-        </div>
-      </form>
       </div>
     </div>
-  </div>
+</div>
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -135,13 +141,13 @@
                     <option value="{{ $g->id }}">{{ $g->name }}</option>
                   @endforeach
                 </select>
-              </div>
             </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-        <button type="submit" class="btn btn-primary">Filtrar</button>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+              <button type="submit" class="btn btn-primary">Filtrar</button>
+            </div>
+        </form>
       </div>
-    </form>
     </div>
   </div>
 </div>
@@ -159,10 +165,6 @@
       <div class="modal-body">
         <form action="{{ route('listone') }}" method="POST">
           @csrf
-      </div>
-  </div>
-    </form>
-    </div>
           <div class="input-group">
             <div class="input-group-prepend">
               <span class="input-group-text" id="">Fecha inicio y fin</span>
@@ -170,12 +172,13 @@
             <input type="date" class="form-control" name="fini">
             <input type="date" class="form-control" name="ffin">
           </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-    <button type="submit" class="btn btn-primary">Filtrar</button>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            <button type="submit" class="btn btn-primary">Filtrar</button>
+          </div>
+        </form>
+      </div>
+    </div>
   </div>
-</form>
-</div>
-</div>
 </div>
 @endsection

@@ -89,30 +89,36 @@ class PetitionController extends Controller
         $grades = grade::all();
         $finic=$req->fini;
         $ffinal=$req->ffin;
-        return view('petition.index', compact('petitions','grades','finic','ffin'));
+        return view('petition.index', compact('petitions','grades','finic','ffinal'));
     }
 
     public function listtwo(Request $req)
     {
         $petitions = petition::where('id_grade',$req->id_grade)->orderBy('type')->with('companies','grades')->get();
         $grades = grade::all();
-        $idg=$req->id_grade;
-        return view('petition.index', compact('petitions','grades','idg'));
+        $idg1=$req->id_grade;
+        return view('petition.index', compact('petitions','grades','idg1'));
     }
 
     public function listthree(Request $req)
     {
         $petitions=petition::where('id_grade', $req->id_grade)->where('type', $req->type)->with('companies', 'grades')->get();
         $grades = grade::all();
-        $idg=$req->id_grade;
+        $idg2=$req->id_grade;
         $type=$req->type;
-        return view('petition.index', compact('petitions', 'grades','id_grade','type'));
+        return view('petition.index', compact('petitions', 'grades','idg2','type'));
     }
 
     public function generatePDF(Request $req)
     {
-        $petitions=$req->petitions;
-        dd($req->petitions);
+        if(isset($req->fini) && isset($req->ffinal)){
+            $petitions=petition::wherebetween('created_at',[$req->fini,$req->ffinal])->orderBy('type')->with('companies')->get();
+        } elseif (isset($req->idg1)) {
+            $petitions = petition::where('id_grade',$req->idg1)->orderBy('type')->with('companies','grades')->get();
+        }elseif (isset($req->idg2) && isset($req->type)) {
+            $petitions=petition::where('id_grade', $req->idg2)->where('type', $req->type)->with('companies', 'grades')->get();
+        }
+
         $pdf = PDF::loadView('pdf.pdf', compact('petitions'));
 
         $pdf->save(storage_path().'_filename.pdf');
