@@ -8,7 +8,7 @@
 </style>
 <div class="card uper">
   <div class="card-header">
-    Edit Share
+    Editar
   </div>
   <div class="card-body">
     @if ($errors->any())
@@ -38,7 +38,7 @@
           <input type="hidden" class="form-control" name="id_student" value="{{ $student->id }}" required/>
         </div>
         <div class="form-group">
-          <select name="id_grade[]" multiple>
+          <select name="id_grade[]" class="form-control" multiple>
             @foreach($grades as $grade)
             <option value="{{ $grade->id }}">{{ $grade->name }}, {{ $grade->level }}</option>
             @endforeach
@@ -55,8 +55,4 @@
       </form>
   </div>
 </div>
-</br>
-<a href="{{ route('students')}}">
-  <button class="btn btn-danger">Volver</button>
-</a>
 @endsection

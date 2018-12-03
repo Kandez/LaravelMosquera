@@ -7,6 +7,7 @@ use App\petition;
 use App\grade;
 use PDF;
 use App\company;
+use Carbon\Carbon;
 
 class PetitionController extends Controller
 {
@@ -85,10 +86,12 @@ class PetitionController extends Controller
 
     public function listone(Request $req)
     {
-        $petitions=petition::wherebetween('created_at',[$req->fini,$req->ffin])->orderBy('type')->with('companies')->get();
+        dd(Carbon::parse($req->ffinal)->format('d-m-Y'));
+        $fechaFinal = Carbon::parse($req->ffinal)->format('d-m-Y');
+        $petitions = petition::where('created_at','>=',$fechaFinal)->where('created_at','<=',$req->fini)->with('companies', 'grades')->get();
         $grades = grade::all();
         $finic=$req->fini;
-        $ffinal=$req->ffin;
+        $fechaFinal=$req->ffin;
         return view('petition.index', compact('petitions','grades','finic','ffinal'));
     }
 
@@ -111,19 +114,24 @@ class PetitionController extends Controller
 
     public function generatePDF(Request $req)
     {
-        if(isset($req->fini) && isset($req->ffinal)){
-            $petitions=petition::wherebetween('created_at',[$req->fini,$req->ffinal])->orderBy('type')->with('companies')->get();
+        if(isset($req->finic) && isset($req->ffinal)){
+            $petitions=petition::wherebetween('created_at',[$req->finic,$req->ffinal])->orderBy('type')->with('companies')->get();
+            $nombre='Peticiones entre '. $req->finic .' y '. $req->ffinal .'.pdf';
         } elseif (isset($req->idg1)) {
             $petitions = petition::where('id_grade',$req->idg1)->orderBy('type')->with('companies','grades')->get();
+            $nombre='Peticiones por grado.pdf';
         }elseif (isset($req->idg2) && isset($req->type)) {
             $petitions=petition::where('id_grade', $req->idg2)->where('type', $req->type)->with('companies', 'grades')->get();
+            $nombre='Peticiones por grado y tipo.pdf';
+        }else{
+            $petitions = petition::all();
+            $nombre='Peticiones.pdf';
         }
 
         $pdf = PDF::loadView('pdf.pdf', compact('petitions'));
 
         $pdf->save(storage_path().'_filename.pdf');
 
-        return $pdf->stream('pdf.pdf');
+        return $pdf->download($nombre);
     }
 }
-

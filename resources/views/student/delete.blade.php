@@ -5,6 +5,14 @@
   .uper {
     margin-top: 40px;
   }
+
+  table.table.table-striped td.derecha{
+    border-radius: 0px 0px 20px 0px!important;
+  }
+
+  table.table.table-striped td.izquierda{
+    border-radius: 0px 0px 0px 20px!important;
+  }
 </style>
 <div class="uper">
   @if(session()->get('success'))
@@ -17,32 +25,25 @@
   <table class="table table-striped">
     <thead>
         <tr>
-          <td>Cursos</td>
-          <td>Nivel</td>
-          <td colspan="2">Action</td>
+          <th>Cursos</th>
+          <th>Nivel</th>
+          <th colspan="2">Action</th>
         </tr>
     </thead>
     <tbody>
         @foreach($studies as $studie)
         <tr>
-            <td>{{$studie->grade->name}}</td>
+            <td class="izquierda">{{$studie->grade->name}}</td>
             <td>{{$studie->grade->level}}</td>
-            <td>
+            <td class="derecha">
                 <form action="{{ route('deletestudie', [ 'id' => $studie->id ]) }}" method="post">
                   @csrf
                   <button class="btn btn-danger" onclick="return confirm('Estas seguro?')" type="submit">Eliminar</button>
                 </form>
-            </td> 
+          </td> 
         @endforeach
       </tr>
     </tbody>
   </table>
-  <a href="{{ route('home')}}">
-    <button>Volver</button>
-  </a>
 <div>
-</br>
-<a href="{{ route('students')}}">
-  <button class="btn btn-danger">Volver</button>
-</a>
 @endsection
